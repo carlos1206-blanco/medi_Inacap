@@ -1,0 +1,67 @@
+  <app-navbar></app-navbar>
+<div class="container mt-4">
+
+  <div class="card p-4">
+
+    <h2>Reserva de Hora</h2>
+
+    <form [formGroup]="formulario">
+
+      <div class="mb-3">
+        <label>Nombre</label>
+
+        <input type="text"
+               class="form-control"
+               formControlName="nombre">
+
+        @if(formulario.get('nombre')?.invalid &&
+            formulario.get('nombre')?.touched){
+
+          <small class="text-danger">
+            Nombre requerido
+          </small>
+        }
+
+      </div>
+
+      <div class="mb-3">
+
+        <label>Especialidad</label>
+
+        <select class="form-control"
+                formControlName="especialidad">
+
+          <option value="">Seleccione</option>
+          <option>Medicina General</option>
+          <option>Pediatría</option>
+          <option>Traumatología</option>
+
+        </select>
+
+      </div>
+
+      <div class="mb-3">
+
+        <label>Fecha</label>
+
+        <input type="date"
+               class="form-control"
+               formControlName="fecha">
+
+      </div>
+
+      <button class="btn btn-success"
+              (click)="guardar()">
+
+        Guardar Reserva
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<app-alert *ngIf="guardado" [mensaje]="mensajeDeGuardado" [tipo]="'success'"></app-alert>
+<app-alert *ngIf="!guardado" [mensaje]="mensajeDeError" [tipo]="'error'"></app-alert>

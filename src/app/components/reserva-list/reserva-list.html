@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+
+  <h2>Reservas</h2>
+
+  <table class="table table-bordered">
+
+    <thead class="table-primary">
+      <tr>
+        <th>Nombre</th>
+        <th>Especialidad</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      @for(reserva of reservas; track reserva){
+
+        <tr>
+          <td>{{ reserva.nombre }}</td>
+          <td>{{ reserva.especialidad }}</td>
+          <td>{{ reserva.fecha }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="eliminarReserva(reserva)">Eliminar</button>
+          </td>
+        </tr>
+
+      }
+
+    </tbody>
+
+  </table>
+
+</div>
