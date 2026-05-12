@@ -1,28 +1,46 @@
-<div class="container mt-5">
+<section class="container py-4 py-md-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h1 class="h4 mb-3 text-center">Ingreso Paciente</h1>
+          <p class="text-secondary text-center small mb-4">Accede para registrar tu reserva medica.</p>
 
-  <div class="card p-4">
+          <form [formGroup]="loginForm" novalidate>
+            <div class="mb-3">
+              <label for="rutUser" class="form-label">Rut</label>
+              <input
+                id="rutUser"
+                class="form-control"
+                type="text"
+                formControlName="rutUser"
+                placeholder="Ingrese su RUT y con guion, ejemplo: 12345678-9"
+              />
+              <div class="text-danger small mt-1" *ngIf="loginForm.controls.rutUser.touched && loginForm.controls.rutUser.invalid">
+                RUT obligatorio (minimo 4 caracteres).
+              </div>
+            </div>
 
-    <h2>Login Paciente</h2>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input
+                id="password"
+                class="form-control"
+                type="password"
+                formControlName="password"
+                placeholder="Ingrese su contraseña"
+              />
+              <div class="text-danger small mt-1" *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                Contraseña obligatoria (minimo 9 caracteres).
+              </div>
+            </div>
 
-    <div class="mb-3">
-      <label>Usuario</label>
-      <input type="text"
-             class="form-control"
-             [(ngModel)]="usuario">
+            <div class="alert alert-danger py-2" *ngIf="loginError">{{ loginError }}</div>
+
+            <button class="btn btn-primary w-100" (click)="ingresar()">Ingresar</button>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <label>Contraseña</label>
-      <input type="password"
-             class="form-control"
-             [(ngModel)]="password">
-    </div>
-
-    <button class="btn btn-primary"
-            (click)="login()">
-      Ingresar
-    </button>
-
   </div>
-
-</div>
+</section>
